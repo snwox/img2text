@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="icon" href="/static/favicon.ico">
+<script>
+
+document.onpaste = function(event){
+        var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+        for (index in items) {
+                var item = items[index];
+                if (item.kind === 'file') {
+                        var blob = item.getAsFile();
+                        var reader = new FileReader();
+                        var path = "/action"
+                        var method = "POST"
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = function() {
+                            // var urlCreator = window.URL || window.webkitURL;
+                            // var imageUrl = urlCreator.createObjectURL(blob);
+                            // var img = document.getElementById("image");
+                            // img.src =imageUrl;
+                            var base64data = reader.result;
+                            console.log(base64data);
+                            var form=document.createElement("form")
+                            form.setAttribute("method",method)
+                            form.setAttribute("action",path)
+                            var hiddenField=document.createElement("input")
+                            hiddenField.setAttribute("type","hidden")
+                            hiddenField.setAttribute("name","data")
+                            hiddenField.setAttribute("value",base64data)
+                            form.appendChild(hiddenField)
+                            document.body.appendChild(form)
+                            form.submit()
+                        }
+                        
+                }
+
+
+        }
+
+}
+
+</script>
+</head>
+<body>
+    <h1>Ctrl+V 를 통해 이미지를 붙여넣자.</h1>
+<img id="image"/>
+</body></html>
