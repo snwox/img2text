@@ -23,7 +23,12 @@ def action(request):
 	f=open(settings.STATICFILES_DIRS[0]+"/image.png","wb")
 	f.write(binary_data)
 	f.close()
-	
+
+	old_im=Image.open(settings.STATICFILES_DIRS[0]+"/image.png")
+	old_size=old_im.size
+	new=Image.new("RGB",(old_size[0]+200,old_size[1]+200),0xffffff)
+	new.paste(old_im,(100,100))
+	new.save(settings.STATICFILES_DIRS[0]+"/image.png")
 
 	img = cv2.imread(settings.STATICFILES_DIRS[0]+'/image.png')
 	img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

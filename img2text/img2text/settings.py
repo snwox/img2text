@@ -53,7 +53,7 @@ MIDDLEWARE_CLASSES = (
     'mysite.middleware.DisableCSRF'
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'img2text.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'img2text.wsgi.application'
 
 
 # Database
@@ -127,5 +127,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'mysite','static')
+    os.path.join(BASE_DIR,'img2text','static')
 ] 
